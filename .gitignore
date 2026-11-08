@@ -12,9 +12,4 @@ __pycache__/
 _build/figuri/
 *.pages
 dry_run*.log
-.token
-remote_l*/
 *.zip
-.host
-zts.py
-_build/report_preview_*.py
