@@ -163,6 +163,22 @@ def to_knn_space(X: pd.DataFrame, scaler=None):
     return scaler.transform(Z), scaler
 
 
+def pseudo_label_score(X_tr, X_te, score, top_frac=0.04, seed=0):
+    from sklearn.model_selection import KFold
+    pos = np.where(score >= np.quantile(score, 1 - top_frac))[0]
+    rng = np.random.default_rng(seed)
+    neg = rng.choice(len(X_tr), min(len(X_tr), 20 * len(pos)), replace=False)
+    p = dict(lgb_params(2, True), n_estimators=300, num_leaves=31, min_child_samples=20, random_state=seed)
+    out = np.zeros(len(X_te))
+    for a, _ in KFold(5, shuffle=True, random_state=seed).split(pos):
+        Xa = pd.concat([X_tr.iloc[neg], X_te.iloc[pos[a]]], ignore_index=True)
+        ya = np.r_[np.zeros(len(neg)), np.ones(len(a))].astype(int)
+        m = lgb.LGBMClassifier(**p).fit(Xa, ya)
+        mask = np.ones(len(X_te), bool); mask[pos[a]] = False
+        out[mask] += m.predict_proba(X_te[mask])[:, 1] / 5
+    return out
+
+
 def adversarial_score(X_tr, X_te, fast):
     Xa = pd.concat([X_tr, X_te], ignore_index=True)
     ya = np.r_[np.zeros(len(X_tr)), np.ones(len(X_te))].astype(int)
@@ -176,7 +192,7 @@ def adversarial_score(X_tr, X_te, fast):
     return out
 
 
-def level3(train, test, fast, unknown_frac=None, test_labels=None, weights_override=None, probs_dir=None):
+def level3(train, test, fast, unknown_frac=None, test_labels=None, weights_override=None, probs_dir=None, refine=False, refine_frac=0.04, refine_iters=1):
     known = sorted(train.attack_cat.unique())
     enc = {c: i for i, c in enumerate(known)}
     X, Xt = add_features(train), add_features(test)
@@ -247,6 +263,12 @@ def level3(train, test, fast, unknown_frac=None, test_labels=None, weights_overr
         w = {k: 0.0 for k in names}
         w.update({k: float(v) for k, v in (kv.split("=") for kv in weights_override.split(","))})
     score = sum(w[k] * rank01(comp[k]) for k in names) / sum(w.values())
+    if refine:
+        base = score
+        for it in range(refine_iters):
+            comp["pseudo"] = pseudo_label_score(X, Xt, score, top_frac=refine_frac, seed=it)
+            score = 0.5 * rank01(base) + 0.5 * rank01(comp["pseudo"])
+        cv["refine"] = f"pseudo-label, top {refine_frac:.0%}, {refine_iters} iter, 50/50 rank blend"
     cv["blend_weights"] = {k: round(v, 3) for k, v in w.items()}
 
     if unknown_frac is None:
@@ -284,6 +306,9 @@ def main():
     ap.add_argument("--unknown-frac", type=float, default=None)
     ap.add_argument("--l3-weights", default=None, help='override blend, e.g. "entropy=1"')
     ap.add_argument("--probs", default=None, help="level 3: closed-set probabilities from multi.py blend")
+    ap.add_argument("--refine", action="store_true", help="level 3: pseudo-label refinement of unknown_score")
+    ap.add_argument("--refine-frac", type=float, default=0.04)
+    ap.add_argument("--refine-iters", type=int, default=1)
     ap.add_argument("--mock-labels", default=None, help="dry run: hidden test labels csv")
     a = ap.parse_args()
 
@@ -300,9 +325,10 @@ def main():
         sub, cv = level2(train, test, a.fast)
     else:
         labels = pd.read_csv(a.mock_labels) if a.mock_labels and a.level == 3 else None
-        sub, cv = level3(train, test, a.fast, a.unknown_frac, labels, a.l3_weights, a.probs)
+        sub, cv = level3(train, test, a.fast, a.unknown_frac, labels, a.l3_weights, a.probs, a.refine, a.refine_frac, a.refine_iters)
 
     tag = "_" + a.l3_weights.replace("=", "").replace(",", "_") if a.l3_weights else ""
+    tag += f"_refine{int(a.refine_frac * 100)}x{a.refine_iters}" if getattr(a, "refine", False) else ""
     path = out / f"level{a.level}_submission{tag}.csv"
     sub.to_csv(path, index=False)
     cv["runtime_s"] = round(time.time() - t0, 1)

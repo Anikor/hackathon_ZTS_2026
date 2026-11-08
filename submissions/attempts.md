@@ -10,3 +10,6 @@
 | 13:11 | 2 | remote_l2/submissions_l2x__level2_blend.csv | zts.py submit | | 0.6048 |
 | 14:08 | 2 | remote_l2/combo_3_lgb2_lgb3_et_rf.csv | zts.py submit | | 0.5996 |
 | 14:24 | 2 | remote_l2/combo_stack2_lgb2_et.csv | zts.py submit | | 0.6117 |
+| 14:32 | 2 | remote_l2/combo_stack11x2_stackx2_lgb2_et.csv | zts.py submit | | 0.6085 |
+| 15:09 | 3 | remote_l3/level3_submission.csv | zts.py submit | | 0.7583 |
+| 15:22 | 3 | remote_l3/stack_refine_level3.csv | zts.py submit | | 0.834 |

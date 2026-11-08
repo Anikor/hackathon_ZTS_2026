@@ -55,6 +55,18 @@ def fit_predict(name, X, y, Xv, Xt, n_class):
                           min_child_weight=2, tree_method="hist", objective="multi:softprob", n_jobs=-1,
                           random_state=42, early_stopping_rounds=150)
         m.fit(X, y, sample_weight=sw, eval_set=[(Xv[0], Xv[1])], verbose=False)
+    elif name == "xgbg":
+        from xgboost import XGBClassifier
+        m = XGBClassifier(n_estimators=4000, learning_rate=0.03, max_depth=10, subsample=0.8, colsample_bytree=0.6,
+                          min_child_weight=2, tree_method="hist", device="cuda", objective="multi:softprob",
+                          random_state=seed, early_stopping_rounds=200)
+        m.fit(X, y, sample_weight=sw, eval_set=[(Xv[0], Xv[1])], verbose=False)
+    elif name == "catg":
+        from catboost import CatBoostClassifier
+        m = CatBoostClassifier(iterations=4000, learning_rate=0.08, depth=8, loss_function="MultiClass",
+                               task_type="GPU", devices="0", random_seed=seed, verbose=0,
+                               early_stopping_rounds=200, allow_writing_files=False)
+        m.fit(X, y, sample_weight=sw, eval_set=(Xv[0], Xv[1]))
     elif name == "cat":
         from catboost import CatBoostClassifier
         m = CatBoostClassifier(iterations=3000, learning_rate=0.06, depth=8, loss_function="MultiClass",
