@@ -15,3 +15,4 @@ dry_run*.log
 .token
 remote_l*/
 *.zip
+.host

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")"
-PY=${PY:-$HOME/.venvs/zts2026/bin/python}
+PY=${PY:-python3}
 L=$1
 for f in train test; do
   [ -f data/level${L}_$f.csv ] || { [ -f ~/Downloads/level${L}_$f.csv ] && cp ~/Downloads/level${L}_$f.csv data/; }

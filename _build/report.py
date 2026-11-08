@@ -66,7 +66,7 @@ def build(r):
     r.h1("2 MODELELE PE NIVELURI", new_page=False)
     r.p("Toate modelele au fost evaluate prin validare încrucișată stratificată în 5 părți, iar fiecare decizie (combinație, "
         "prag, ponderi pe clase) a fost luată pe predicțiile out-of-fold, nu pe clasament. Antrenarea a rulat pe un calculator "
-        "cu 28 de nuclee și o placă RTX 4070, controlat prin SSH: XGBoost și CatBoost pe GPU, restul pe CPU.")
+        "cu 28 de nuclee și o placă RTX 4070: XGBoost și CatBoost pe GPU, restul pe CPU.")
     r.p("**Nivelul 1.** Au fost comparate LightGBM, ExtraTrees, RandomForest, XGBoost, CatBoost și HistGradientBoosting. "
         "Combinația aleasă greedy pe F1 out-of-fold a fost ExtraTrees (două configurații) + LightGBM, cu pragul optimizat "
         "pe aceleași predicții (0,475).")

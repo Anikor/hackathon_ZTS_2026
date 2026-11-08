@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")"
-PY=${PY:-$HOME/.venvs/zts2026/bin/python}
+PY=${PY:-python3}
 [ -f data_mock/level3_train.csv ] || $PY src/make_mock.py
 for L in 1 2 3; do
   $PY src/solve.py --level $L --data data_mock --out submissions_mock --mock-labels data_mock/level3_test_labels.csv 2>&1 | grep -v "fold "

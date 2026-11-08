@@ -4,7 +4,7 @@ import sys
 import time
 from pathlib import Path
 
-HOST = "Student 03@25.17.168.99"
+HOST = (Path(__file__).resolve().parent / ".host").read_text().strip()
 API = "https://hackathon.osace.ro/api"
 ROOT = Path(__file__).resolve().parent
 TOKEN = (ROOT / ".token").read_text().strip()

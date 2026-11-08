@@ -77,7 +77,7 @@ def main():
         per = f1_score(y, (oof * s).argmax(1), average=None)
         print(f"TE={use_te}: raw {f1_score(y, oof.argmax(1), average='macro'):.4f} tuned {f1_score(y, (oof * s).argmax(1), average='macro'):.4f} "
               f"{dict(zip(classes, np.round(per, 3)))}  {time.time() - t0:.0f}s", flush=True)
-        np.save(f"/private/tmp/claude-501/-Users-anikor/3384f5ec-08f2-4740-9fa7-6cb94321fab6/scratchpad/l3_te_oof_{int(use_te)}.npy", oof)
+        np.save(f"l3_te_oof_{int(use_te)}.npy", oof)
 
 
 if __name__ == "__main__":

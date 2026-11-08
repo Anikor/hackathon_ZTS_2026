@@ -36,5 +36,5 @@ python src/l3_eight.py --data data --probs submissions_l3x --sub submissions_l3x
 for any level.
 
 ## Infrastructure
-Training ran on a lab PC (28 cores, RTX 4070) over SSH. `zts.py` (status / run / fetch / submit) drives it and
-talks to the platform API. The token is read from a local `.token` file, which is not part of the archive.
+Training ran on a PC with 28 CPU cores and an RTX 4070. `zts.py` (status / run / fetch / submit) talks to the platform API.
+The host and the token are read from local files that are not committed.
