@@ -20,3 +20,4 @@
 | 16:01 | 3 | submissions_l3s/sub/level3_submission_refine12x1.csv | --refine-frac 0.12 | | 0.8393 |
 | 16:03 | 3 | submissions_l3s/sub/level3_submission_refine16x1.csv | --refine-frac 0.16 | | 0.8393 (plateau) |
 | 16:12 | 3 | submissions_l3s/sub/level3_submission_eight.csv | src/l3_eight.py: 8-class LGBM with pseudo-Unknown (2x650 test rows), 30% of unknown_score | | 0.8394 BEST |
+| 17:35 | 3 | submissions_l3s/sub/level3_submission_ens.csv | src/l3_ensemble.py: rank mean of refine8/12/16 + eight, cutoff 657 | | 0.8393 (best stays 0.8394) |
