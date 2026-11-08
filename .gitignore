@@ -12,3 +12,5 @@ __pycache__/
 _build/figuri/
 *.pages
 dry_run*.log
+.token
+remote_l*/
