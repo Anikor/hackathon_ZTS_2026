@@ -16,3 +16,5 @@ dry_run*.log
 remote_l*/
 *.zip
 .host
+zts.py
+_build/report_preview_*.py

@@ -36,5 +36,4 @@ python src/l3_eight.py --data data --probs submissions_l3x --sub submissions_l3x
 for any level.
 
 ## Infrastructure
-Training ran on a PC with 28 CPU cores and an RTX 4070. `zts.py` (status / run / fetch / submit) talks to the platform API.
-The host and the token are read from local files that are not committed.
+Training ran on a PC with 28 CPU cores and an RTX 4070.
