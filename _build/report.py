@@ -100,9 +100,24 @@ def build(r):
         "de 83,40%, erorile se amplifică).")
 
     r.h1("CONCLUZII", new_page=False)
-    r.p("Cel mai mult au contat stacking-ul peste modele diferite și pseudo-etichetarea pe test pentru atacurile noi, care a "
-        "ridicat nivelul 3 cu aproape 8 puncte. Limita principală vine din date: clasele Analysis, Backdoor și DoS au fluxuri "
-        "practic identice, deci macro F1 la nivelul 2 rămâne în jur de 0,6 indiferent de model.")
+    r.p("Soluția a obținut 95,88% la nivelul 1, 61,17% la nivelul 2 și 83,94% la nivelul 3. Cel mai mult au contat trei "
+        "idei. Prima este combinarea unor modele de tipuri diferite (boosting și arbori aleatori), care greșesc în locuri "
+        "diferite: la nivelul 1 a adus +0,12 puncte, iar stacking-ul peste probabilitățile lor a adus +0,7 puncte la "
+        "nivelul 2. A doua este luarea tuturor deciziilor (praguri, ponderi pe clase, combinații) pe predicții "
+        "out-of-fold, nu pe clasament, ceea ce a făcut ca scorurile de pe test să urmeze fidel validarea. A treia, și cea "
+        "mai importantă, este pseudo-etichetarea pe test pentru atacurile noi: ea a ridicat nivelul 3 de la 75,83% la "
+        "83,40% într-o singură submisie, pentru că tipurile noi de atac formează grupuri proprii, ușor de separat odată ce "
+        "modelul vede exemple din test.")
+    r.p("Analiza erorilor arată unde este limita. La nivelul 3, partea Unknown este practic rezolvată: proporțiile "
+        "claselor dispărute din train prevăd circa 655 de fluxuri noi, iar detectorii noștri sunt de acord asupra a 647 "
+        "dintre primele 657. Pierderea rămasă vine din clasele cunoscute Backdoor (F1 0,24) și DoS (0,50), confundate cu "
+        "Exploits. Am verificat că nu este o slăbiciune a modelului: fluxuri cu exact aceiași octeți, pachete și TTL apar "
+        "cu etichete diferite, iar nici semnăturile exacte, nici mai multe modele, nici alte ponderi nu au depășit 0,696 pe "
+        "aceste clase. Limita este deci în date, iar o îmbunătățire reală ar cere informații care lipsesc din cele 39 de "
+        "coloane, de exemplu conținutul pachetelor sau protocolul și serviciul.")
+    r.p("Ca lecție practică, diferențele de peste 0,5 puncte pe validare s-au confirmat pe test, cele sub 0,2 nu, iar "
+        "rularea modelelor pe un calculator cu GPU a redus antrenarea XGBoost și CatBoost de la zeci de minute la două–trei "
+        "minute, lăsând timp pentru mai multe experimente.")
     r.p("**Utilizarea AI:** Am folosit AI pentru structurarea codului și a raportului.")
 
     r.h1("BIBLIOGRAFIE", new_page=False)
