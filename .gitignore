@@ -1,0 +1,14 @@
+data/
+data_mock/
+downloads/
+submissions*/*
+!submissions/attempts.md
+*.npy
+*.csv
+catboost_info/
+__pycache__/
+.DS_Store
+.impeccable/
+_build/figuri/
+*.pages
+dry_run*.log
