@@ -31,8 +31,10 @@ def run(level):
     url = f"{API}/datasets/{level}?token={TOKEN}&type="
     remote(f'curl -sSf -o data\\level{level}_train.csv "{url}train" && curl -sSf -o data\\level{level}_test.csv "{url}test"')
     remote(f"py -3.11 src\\solve.py --level {level} --data data --out submissions")
-    remote(f"py -3.11 src\\multi.py train --level {level} --data data --out submissions_l{level}x")
-    remote(f"py -3.11 src\\multi.py blend --level {level} --data data --out submissions_l{level}x")
+    models = "lgb,et,rf"
+    fixed = ' --fixed "lgb+lgb+et"' if level == 3 else ""
+    remote(f"py -3.11 src\\multi.py train --level {level} --data data --out submissions_l{level}x --models {models}")
+    remote(f"py -3.11 src\\multi.py blend --level {level} --data data --out submissions_l{level}x{fixed}")
     if level == 3:
         remote("py -3.11 src\\solve.py --level 3 --data data --out submissions_l3x\\sub --probs submissions_l3x")
         remote("py -3.11 src\\solve.py --level 3 --data data --out submissions_l3x\\sub --probs submissions_l3x --l3-weights entropy=1")
@@ -50,7 +52,8 @@ def fetch(level):
                   "submissions_l3x/sub/level3_submission_entropy1.csv", "submissions_l3x/sub/level3_cv_entropy1.json"]
     for f in files:
         name = f.replace("/", "__")
-        subprocess.run(["scp", "-q", "-o", "BatchMode=yes", f"{HOST}:zts2026/{f}", str(dst / name)])
+        with open(dst / name, "wb") as fh:
+            subprocess.run(SSH + [HOST, f'type "%USERPROFILE%\\zts2026\\{f.replace("/", chr(92))}"'], stdout=fh)
     print("fetched:", sorted(p.name for p in dst.iterdir()))
 
 
