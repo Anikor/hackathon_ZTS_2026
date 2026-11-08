@@ -13,3 +13,10 @@
 | 14:32 | 2 | remote_l2/combo_stack11x2_stackx2_lgb2_et.csv | zts.py submit | | 0.6085 |
 | 15:09 | 3 | remote_l3/level3_submission.csv | zts.py submit | | 0.7583 |
 | 15:22 | 3 | remote_l3/stack_refine_level3.csv | zts.py submit | | 0.834 |
+| 15:09 | 3 | submissions/level3_submission.csv (Student 03) | solve.py baseline (single LGBM, rank blend entropy/knn/adversarial) | known F1 0.6857, LOCO AUROC 0.8845 | 0.7583 |
+| 15:22 | 3 | submissions_l3s/sub/level3_submission_refine.csv | stack(lgb,et,rf,xgbg,catg)x2 + lgb x2 + et, --refine top 4% x1 | known F1 0.6958 | 0.8340 |
+| 15:55 | 3 | submissions_l3s/sub/level3_submission_refine8x1.csv | same, --refine-frac 0.08 | | 0.8385 BEST |
+| 15:59 | 3 | submissions_l3s/sub/level3_submission_refine4x2.csv | same, --refine-frac 0.04 --refine-iters 2 | | 0.8275 |
+| 16:01 | 3 | submissions_l3s/sub/level3_submission_refine12x1.csv | --refine-frac 0.12 | | 0.8393 |
+| 16:03 | 3 | submissions_l3s/sub/level3_submission_refine16x1.csv | --refine-frac 0.16 | | 0.8393 (plateau) |
+| 16:12 | 3 | submissions_l3s/sub/level3_submission_eight.csv | src/l3_eight.py: 8-class LGBM with pseudo-Unknown (2x650 test rows), 30% of unknown_score | | 0.8394 BEST |

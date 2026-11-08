@@ -14,3 +14,4 @@ _build/figuri/
 dry_run*.log
 .token
 remote_l*/
+*.zip

@@ -115,7 +115,7 @@ def main():
         P("Boosting pe arbori + ponderare a claselor + ajustarea pragurilor pe predicții out-of-fold a dat cel mai mult. "
           "La open-set, incertitudinea clasificatorului (entropia) a fost cel mai stabil semnal, iar semnalele de densitate ajută doar "
           "când clasele noi sunt diferite de cele cunoscute."),
-        P("<b>Utilizarea AI:</b> Am folosit AI-ul Claude de la Anthropic pentru ghidare."),
+        P("<b>Utilizarea AI:</b> Am folosit AI pentru structurarea codului și a raportului."),
     ]
     SimpleDocTemplate(str(out), pagesize=A4, leftMargin=1.8 * cm, rightMargin=1.8 * cm,
                       topMargin=1.5 * cm, bottomMargin=1.5 * cm,
