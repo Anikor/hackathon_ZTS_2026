@@ -29,18 +29,9 @@ Every submission is logged with its file, settings, CV and live score in [`submi
 
 ## 💡 Approach
 
-```mermaid
-flowchart LR
-    A[39 flow features] --> B[log1p on heavy tails<br/>ratio features]
-    B --> C1[LightGBM ×3]
-    B --> C2[ExtraTrees · RandomForest]
-    B --> C3[XGBoost · CatBoost<br/>on GPU]
-    C1 & C2 & C3 --> D[5-fold out-of-fold<br/>probabilities]
-    D --> E[stacking +<br/>greedy OOF blend]
-    E --> F1[L1: tuned threshold]
-    E --> F2[L2: weighted combos]
-    E --> F3[L3: unknown score +<br/>pseudo-label refine]
-```
+<p align="center">
+  <img src="docs/approach.svg" width="100%" alt="Pipeline: 39 flow features, feature engineering, LightGBM / ExtraTrees + RandomForest / XGBoost + CatBoost on GPU, 5-fold OOF probabilities, stacking and greedy blend, then a finish per level">
+</p>
 
 <details open>
 <summary><b>Level 1: binary detection</b></summary>
