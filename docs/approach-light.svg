@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 300" width="1060" height="300" role="img" aria-labelledby="t">
+  <title id="t">Pipeline: 39 flow features, feature engineering, three model families, out-of-fold probabilities, stacking and blend, then one finish per level</title>
+  <style>
+    .bg { fill: #ffffff; }
+    .box { fill: #f6f8fa; stroke: #d0d7de; stroke-width: 1.2; }
+    .gpu { fill: #eef8e6; stroke: #76b900; }
+    .out { fill: #eaf2ff; stroke: #4c8dff; }
+    .txt { fill: #1f2328; font: 500 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; text-anchor: middle; }
+    .sub { fill: #656d76; font-size: 11.5px; font-weight: 400; }
+    .lvl { fill: #0b5cd5; font-weight: 700; }
+    .wire { fill: none; stroke: #8c959f; stroke-width: 1.4; }
+    .head { fill: #8c959f; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path class="head" d="M0 0 L10 5 L0 10 z"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1060" height="300" rx="14"/>
+
+  <g class="wire" marker-end="url(#a)">
+    <path d="M160 150 L194 150"/>
+    <path d="M336 150 C354 150 352 60 370 60"/>
+    <path d="M336 150 L370 150"/>
+    <path d="M336 150 C354 150 352 240 370 240"/>
+    <path d="M512 60 C530 60 528 150 546 150"/>
+    <path d="M512 150 L546 150"/>
+    <path d="M512 240 C530 240 528 150 546 150"/>
+    <path d="M688 150 L722 150"/>
+    <path d="M864 150 C882 150 880 60 898 60"/>
+    <path d="M864 150 L898 150"/>
+    <path d="M864 150 C882 150 880 240 898 240"/>
+  </g>
+
+  <rect class="box" x="20" y="118" width="140" height="64" rx="8"/>
+  <text class="txt" x="90" y="146">39 flow</text>
+  <text class="txt" x="90" y="164">features</text>
+
+  <rect class="box" x="196" y="118" width="140" height="64" rx="8"/>
+  <text class="txt" x="266" y="146">log1p · ratios</text>
+  <text class="txt sub" x="266" y="164">feature engineering</text>
+
+  <rect class="box" x="372" y="28" width="140" height="64" rx="8"/>
+  <text class="txt" x="442" y="56">LightGBM ×3</text>
+  <text class="txt sub" x="442" y="74">CPU</text>
+
+  <rect class="box" x="372" y="118" width="140" height="64" rx="8"/>
+  <text class="txt" x="442" y="146">ExtraTrees</text>
+  <text class="txt sub" x="442" y="164">RandomForest · CPU</text>
+
+  <rect class="box gpu" x="372" y="208" width="140" height="64" rx="8"/>
+  <text class="txt" x="442" y="236">XGBoost</text>
+  <text class="txt sub" x="442" y="254">CatBoost · GPU</text>
+
+  <rect class="box" x="548" y="118" width="140" height="64" rx="8"/>
+  <text class="txt" x="618" y="146">5-fold OOF</text>
+  <text class="txt sub" x="618" y="164">probabilities</text>
+
+  <rect class="box" x="724" y="118" width="140" height="64" rx="8"/>
+  <text class="txt" x="794" y="146">Stacking</text>
+  <text class="txt sub" x="794" y="164">+ greedy OOF blend</text>
+
+  <rect class="box out" x="900" y="28" width="140" height="64" rx="8"/>
+  <text class="txt lvl" x="970" y="56">Level 1 · 95.88%</text>
+  <text class="txt sub" x="970" y="74">tuned F1 threshold</text>
+
+  <rect class="box out" x="900" y="118" width="140" height="64" rx="8"/>
+  <text class="txt lvl" x="970" y="146">Level 2 · 61.17%</text>
+  <text class="txt sub" x="970" y="164">weighted combos</text>
+
+  <rect class="box out" x="900" y="208" width="140" height="64" rx="8"/>
+  <text class="txt lvl" x="970" y="236">Level 3 · 83.94%</text>
+  <text class="txt sub" x="970" y="254">unknown score + refine</text>
+</svg>

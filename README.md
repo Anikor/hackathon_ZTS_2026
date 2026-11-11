@@ -31,7 +31,11 @@ Every submission is logged with its file, settings, CV and live score in [`submi
 ## 💡 Approach
 
 <p align="center">
-  <img src="docs/approach.svg" width="100%" alt="Pipeline: 39 flow features, feature engineering, LightGBM / ExtraTrees + RandomForest / XGBoost + CatBoost on GPU, 5-fold OOF probabilities, stacking and greedy blend, then a finish per level">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/approach-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="docs/approach-light.svg">
+    <img src="docs/approach-light.svg" width="100%" alt="Pipeline: 39 flow features, feature engineering, LightGBM / ExtraTrees + RandomForest / XGBoost + CatBoost on GPU, 5-fold OOF probabilities, stacking and greedy blend, then a finish per level">
+  </picture>
 </p>
 
 <details open>

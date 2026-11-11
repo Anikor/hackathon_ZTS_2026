@@ -1,26 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 300" width="1060" height="300" role="img" aria-labelledby="t">
   <title id="t">Pipeline: 39 flow features, feature engineering, three model families, out-of-fold probabilities, stacking and blend, then one finish per level</title>
   <style>
-    .bg { fill: #ffffff; }
-    .box { fill: #f6f8fa; stroke: #d0d7de; stroke-width: 1.2; }
-    .gpu { fill: #eef8e6; stroke: #76b900; }
-    .out { fill: #eaf2ff; stroke: #4c8dff; }
-    .txt { fill: #1f2328; font: 500 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; text-anchor: middle; }
-    .sub { fill: #656d76; font-size: 11.5px; font-weight: 400; }
-    .lvl { fill: #0b5cd5; font-weight: 700; }
-    .wire { fill: none; stroke: #8c959f; stroke-width: 1.4; }
-    .head { fill: #8c959f; }
-    @media (prefers-color-scheme: dark) {
-      .bg { fill: #0d1117; }
-      .box { fill: #161b22; stroke: #30363d; }
-      .gpu { fill: #14200c; stroke: #76b900; }
-      .out { fill: #0d1d36; stroke: #4c8dff; }
-      .txt { fill: #e6edf3; }
-      .sub { fill: #8d96a0; }
-      .lvl { fill: #79b0ff; }
-      .wire { stroke: #6e7681; }
-      .head { fill: #6e7681; }
-    }
+    .txt { font: 500 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; text-anchor: middle; }
+    .sub { font-size: 11.5px; font-weight: 400; }
+    .lvl { font-weight: 700; }
+    .wire { fill: none; stroke-width: 1.4; }
+    .box { stroke-width: 1.2; }
+    .bg { fill: #0d1117; }
+    .box { fill: #161b22; stroke: #30363d; }
+    .gpu { fill: #14200c; stroke: #76b900; }
+    .out { fill: #0d1d36; stroke: #4c8dff; }
+    .txt { fill: #e6edf3; }
+    .sub { fill: #8d96a0; }
+    .lvl { fill: #79b0ff; }
+    .wire { stroke: #6e7681; }
+    .head { fill: #6e7681; }
   </style>
   <defs>
     <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
