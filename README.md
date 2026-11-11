@@ -2,7 +2,7 @@
 
 # 🛡️ AI Cyber Defense Challenge: Team Eunoia
 
-**ZTS XIII · OSACE · 8 November 2026**
+**ZTS XIII · OSACE · Craiova, Romania · 8 November 2026**
 
 Network intrusion detection in three levels: binary detection, attack-family classification and open-set detection of attacks never seen in training.
 
@@ -11,6 +11,7 @@ Network intrusion detection in three levels: binary detection, attack-family cla
 ![Python](https://img.shields.io/badge/python-3.11-3776AB?logo=python&logoColor=white)
 ![LightGBM](https://img.shields.io/badge/LightGBM-XGBoost%20·%20CatBoost-success)
 ![GPU](https://img.shields.io/badge/GPU-RTX%204070-76B900?logo=nvidia&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
 </div>
 
@@ -121,3 +122,7 @@ Training ran on a lab PC with 28 CPU cores and an RTX 4070. A full level 2 round
 **Eunoia**: Drangoi Karina · Secrieru Maxim. Technical University of Moldova (UTM).
 
 AI was used to structure the code and the report.
+
+## 📄 License
+
+[MIT](LICENSE). The competition data belongs to the organisers and is not included in this repository.
